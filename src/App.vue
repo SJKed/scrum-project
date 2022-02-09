@@ -7,7 +7,13 @@
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  mounted() {
+    this.$store.dispatch("fetchData");
+  },
+};
+</script>
 <style lang="scss">
 * {
   margin: 0;

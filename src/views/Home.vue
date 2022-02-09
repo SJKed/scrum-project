@@ -4,14 +4,18 @@
     <main>
       <section>
         <!-- 9 articles for  -->
-        <Poster v-for="index of 9" :key="index" :char="posters[index - 1]" />
+        <Poster
+          v-for="(poster, index) of posters"
+          :key="index"
+          :char="poster"
+        />
       </section>
       <section>
         <!-- 2 articles for the big two articles with the white background -->
         <BigPoster
-          v-for="index of 2"
+          v-for="(poster, index) of bigPosters"
           :key="index"
-          :char="posters[posters.length - index]"
+          :char="poster"
         />
       </section>
     </main>
@@ -20,15 +24,12 @@
 </template>
 
 <script>
-import posters from "../assets/posters.json";
 import { Poster, BigPoster, Header, Footer } from "../components";
-
+import { mapGetters } from "vuex";
 export default {
   components: { Poster, BigPoster, Header, Footer },
-  data() {
-    return {
-      posters: posters,
-    };
+  computed: {
+    ...mapGetters(["posters", "bigPosters"]),
   },
 };
 </script>
