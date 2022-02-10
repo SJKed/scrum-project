@@ -1,20 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import About from '../views/About.vue'
+import Singleposter from '../views/Singleposter.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/Singlepage',
-    name: 'Singlepage',
-    component: Singlepage
+    path: '/poster',
+    name: 'Singleposter',
+    component: Singleposter
   }
 ]
 
