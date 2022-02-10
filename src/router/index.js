@@ -12,9 +12,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: '/Singlepage',
+    name: 'Singlepage',
+    component: Singlepage
   }
 ]
 
