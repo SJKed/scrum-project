@@ -1,6 +1,5 @@
 <template>
   <div class="wrapper">
-    <Header />
     <main>
       <section>
         <!-- 9 articles for  -->
@@ -19,15 +18,14 @@
         />
       </section>
     </main>
-    <Footer />
   </div>
 </template>
 
 <script>
-import { Poster, BigPoster, Header, Footer } from "../components";
+import { Poster, BigPoster } from "../components";
 import { mapGetters } from "vuex";
 export default {
-  components: { Poster, BigPoster, Header, Footer },
+  components: { Poster, BigPoster },
   computed: {
     ...mapGetters(["posters", "bigPosters"]),
   },
@@ -35,10 +33,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.wrapper {
-  text-align: center;
-}
-
 main {
   background: black;
   section {
@@ -51,11 +45,8 @@ main {
 
 @media only screen and (min-width: 600px) {
   main {
-    display: grid;
-    place-items: center;
-    section:first-of-type {
-      max-width: 900px;
-    }
+    max-width: 950px;
+    margin: auto;
   }
 }
 </style>
