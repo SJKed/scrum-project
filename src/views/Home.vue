@@ -4,6 +4,7 @@
       <section>
         <!-- 9 articles for  -->
         <Poster
+        
           v-for="(poster, index) of posters"
           :key="index"
           :char="poster"
