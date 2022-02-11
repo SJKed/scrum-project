@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article @click="$router.push('/poster/' + char.id)">
     <img :src="require('../assets/Posters/' + char.img)" alt="" height="400" />
     <div>
       <h3>{{ char.name }}</h3>
@@ -19,6 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 article {
+  cursor: pointer;
   text-align: center;
   max-width: 400px;
   color: black;
