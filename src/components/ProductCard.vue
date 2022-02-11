@@ -58,6 +58,7 @@ export default {
   display: flex;
   flex-direction: row;
   align-self: center;
+  overflow: scroll;
 }
 .ProductCard {
   background: #e3e3d8;
@@ -113,6 +114,12 @@ export default {
         }
       }
     }
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .wrapper {
+    overflow: hidden;
   }
 }
 </style>

@@ -1,13 +1,5 @@
 <template>
   <header>
-    <transition name="fade">
-      <div class="menu" v-show="showMenu">
-        <div>
-          <router-link to="/">Home</router-link>
-          <router-link to="/cart">Cart</router-link>
-        </div>
-      </div>
-    </transition>
     <nav>
       <svg
         class="menu-icon"
@@ -35,6 +27,14 @@
         <img src="../assets/Icons/searchicon.svg" alt="" @click="setSearch" />
       </div>
     </nav>
+    <transition name="fade">
+      <div class="menu" v-show="showMenu">
+        <div>
+          <router-link to="/">Home</router-link>
+          <router-link to="/cart">Cart</router-link>
+        </div>
+      </div>
+    </transition>
     <h1>Poster Shop</h1>
   </header>
 </template>
@@ -45,6 +45,11 @@ export default {
       search: "",
       showMenu: false,
     };
+  },
+  watch: {
+    $route: function () {
+      this.showMenu = false;
+    },
   },
   methods: {
     keydown(e) {
@@ -116,6 +121,7 @@ header {
   }
   .menu-icon {
     cursor: pointer;
+    z-index: 20;
   }
   .menu {
     position: absolute;
