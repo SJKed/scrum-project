@@ -63,7 +63,7 @@ export default {
   height: 3840px;
   align-content: center;
   align-items: center;
-  padding-left: 1150px;
+  padding-left: 100px;
 }
 .container {
   background-color: black;
