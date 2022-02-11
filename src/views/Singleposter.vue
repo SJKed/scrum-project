@@ -7,6 +7,7 @@
       <p> {{poster.description}} </p>
       <p> <b>Price: {{ poster.price }} </b></p>
        <button>oh, take my money!</button> 
+       <button>Save for later</button>
     </div>
     </div>
     <productCard/>
@@ -16,9 +17,6 @@
 import productCard from "../components/ProductCard.vue"
 export default {
   components: {productCard},
-  props: {
-    large: Boolean
-  },
 computed: {
   poster() {
   return this.$store.state.posters.find(poster => poster.id == this.$route.params.id)
@@ -34,9 +32,12 @@ computed: {
   grid-template-rows: 2;
   align-content: center;
 }
-
+img {
+  margin-left: 15rem;
+}
 .poster-info {
-  width: 10rem;
+  margin: 4rem;
+  width: 15rem;
   height: 10rem;
   color: #e3e3d8;
 }
@@ -51,5 +52,10 @@ button {
   font-size: 1rem;
   margin: 1rem;
   border-radius: 2%;
+  background: #e83f57;
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+margin-bottom: auto;
 }
 </style>
