@@ -1,11 +1,13 @@
 <template>
   <header>
-    <div class="menu" v-if="showMenu">
-      <div>
-        <router-link to="/">Home</router-link>
-        <router-link to="/cart">Cart</router-link>
+    <transition name="fade">
+      <div class="menu" v-show="showMenu">
+        <div>
+          <router-link to="/">Home</router-link>
+          <router-link to="/cart">Cart</router-link>
+        </div>
       </div>
-    </div>
+    </transition>
     <nav>
       <svg
         class="menu-icon"
@@ -17,10 +19,10 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="28" height="2" rx="1" fill="black" />
-        <rect y="7" width="28" height="2" rx="1" fill="black" />
-        <rect y="14" width="28" height="2" rx="1" fill="black" />
-        <rect y="21" width="28" height="2" rx="1" fill="black" />
+        <rect class="rect1" width="28" height="2" rx="1" fill="black" />
+        <rect class="rect2" y="7" width="28" height="2" rx="1" fill="black" />
+        <rect class="rect3" y="14" width="28" height="2" rx="1" fill="black" />
+        <rect class="rect4" y="21" width="28" height="2" rx="1" fill="black" />
       </svg>
 
       <div>
@@ -58,6 +60,41 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease-in-out;
+}
+.rect1,
+.rect2,
+.rect3,
+.rect4 {
+  transition: all ease-in-out 0.5s;
+}
+
+.close {
+  .rect2,
+  .rect3 {
+    opacity: 0;
+  }
+  .rect1 {
+    transform: rotate(45deg);
+  }
+  .rect4 {
+    transform: rotate(-45deg);
+    transform-origin: bottom left;
+  }
+}
+
 header {
   position: relative;
   background: #3de07e;
