@@ -10,7 +10,7 @@
        <button>Save for later</button>
     </div>
     </div>
-    <productCard/>
+<productCard class="carosal"/>
   </article>
 </template>
 <script>
@@ -34,6 +34,9 @@ computed: {
 }
 img {
   margin-left: 15rem;
+}
+.carosal {
+  transform: scale(0.75)
 }
 .poster-info {
   margin: 4rem;
