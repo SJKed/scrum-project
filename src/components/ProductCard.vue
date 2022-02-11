@@ -42,16 +42,13 @@ export default {
       for (let i = 0; i < this.posters.length; i++) {
         posters.push(this.posters[i]);
       }
-      for (let i = 0; i < 1; i++) {
+      for (let i = 0; i < 3; i++) {
         let randomIndex = Math.floor(Math.random() * posters.length);
         randomPosters.push(posters[randomIndex]);
         posters.splice(randomIndex, 1);
       }
       return randomPosters;
     },
-  },
-  updated() {
-    console.log(this.randomPosters);
   },
 };
 </script>
@@ -60,13 +57,13 @@ export default {
 .wrapper {
   display: flex;
   flex-direction: row;
+  align-self: center;
 }
 .ProductCard {
   background: #e3e3d8;
   font-family: sans-serif;
   width: 300px;
   height: 400px;
-  background: white;
   margin: auto;
   border-radius: 10px;
   box-shadow: 0;
