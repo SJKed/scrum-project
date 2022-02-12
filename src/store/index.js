@@ -1,20 +1,54 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import posters from '../assets/posters.json'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    posters:[...posters]
-  },
-  mutations: {
+    posters: [],
+    search: null,
+    cart: []
   },
   actions: {
+    fetchData(context) {
+      fetch("/posters.json")
+        .then((res) => res.json())
+        .then((data) => {
+          context.commit("setPosters", data);
+        });
+    },
+    setSearch(context, word) {
+      context.commit("setSearch", word);
+    },
   },
+  mutations: {
+    setPosters(state, posters) {
+      state.posters = posters;
+    },
+    setSearch(state, word) {
+      state.search = word;
+      console.log("mutating search", word);
+    },
+  },
+
   getters: {
-getPosters:(state)=>state.posters
+    posters(state) {
+      const smallPosters = state.posters.slice(0, state.posters.length - 2);
+      if (state.search === null || state.search === "") {
+        return smallPosters;
+      } else {
+        return smallPosters.filter((pos) =>
+          pos.name.toLowerCase().includes(state.search)
+        );
+      }
+    },
+    addToCart(state, id) {
+      state.cart.push(id);
+      console.log("Heloo")
+    }
   },
-  modules: {
-  }
-})
+  bigPosters(state) {
+    return state.posters.slice(state.posters.length - 2, state.length);
+  },
+
+});
