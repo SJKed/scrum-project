@@ -1,15 +1,10 @@
 <template>
   <div class="wrapper">
     <main>
-      <section>
+      <transition-group appear tag="section" name="posters">
         <!-- 9 articles for  -->
-        <Poster
-        
-          v-for="(poster, index) of posters"
-          :key="index"
-          :char="poster"
-        />
-      </section>
+        <Poster v-for="poster of posters" :key="poster.id" :char="poster" />
+      </transition-group>
       <section>
         <!-- 2 articles for the big two articles with the white background -->
         <BigPoster
@@ -42,6 +37,16 @@ main {
     flex-wrap: wrap;
     justify-content: center;
   }
+}
+
+.posters-enter,
+.posters-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.poster-enter-active,
+.posters-leave-active {
+  transition: all 3s ease;
 }
 
 @media only screen and (min-width: 600px) {

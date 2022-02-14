@@ -1,21 +1,23 @@
 <template>
   <div class="wrapper">
-    <article>
-      <img
-        :src="require('../assets/Posters/' + poster.img)"
-        alt=""
-        height="300"
-        width="300"
-      />
-      <div class="poster-info">
-        <h1>{{ poster.name }}</h1>
-        <p>{{ poster.description }}</p>
-        <p>
-          <b>Price: {{ poster.price }} </b>
-        </p>
-        <button>oh, take my money!</button>
-      </div>
-    </article>
+    <transition name="fade" appear>
+      <article>
+        <img
+          :src="require('../assets/Posters/' + poster.img)"
+          alt=""
+          height="300"
+          width="300"
+        />
+        <div class="poster-info">
+          <h1>{{ poster.name }}</h1>
+          <p>{{ poster.description }}</p>
+          <p>
+            <b>Price: {{ poster.price }} </b>
+          </p>
+          <button>oh, take my money!</button>
+        </div>
+      </article>
+    </transition>
     <ProductCard />
   </div>
 </template>
@@ -34,7 +36,9 @@ export default {
     },
   },
   mounted() {
-    document.querySelector("article").scrollIntoView();
+    if (window.innerWidth < 600) {
+      document.querySelector("article").scrollIntoView();
+    }
   },
 };
 </script>
@@ -63,6 +67,16 @@ article {
       border-radius: 8px;
     }
   }
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 3s ease;
 }
 
 @media only screen and (min-width: 600px) {

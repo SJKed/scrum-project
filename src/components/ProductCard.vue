@@ -1,10 +1,18 @@
 <template>
-  <div class="wrapper">
+  <transition-group
+    tag="div"
+    name="cards"
+    @before-enter="beforeEnter"
+    @enter="enter"
+    appear
+    class="wrapper"
+  >
     <div
       class="ProductCard"
       v-for="(poster, index) of randomPosters"
-      :key="index"
+      :key="poster.id"
       :char="poster"
+      :data-index="index"
     >
       <img
         class="ProductCard__img"
@@ -28,12 +36,28 @@
         </div>
       </div>
     </div>
-  </div>
+  </transition-group>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import gsap from "gsap";
 export default {
+  methods: {
+    beforeEnter(el) {
+      // el.style.transform = "translateY(50px)";
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      gsap.to(el, {
+        duration: 2,
+        y: 0,
+        opacity: 1,
+        delay: el.dataset.index * 0.5,
+        onComplete: done,
+      });
+    },
+  },
   computed: {
     ...mapGetters(["posters"]),
     randomPosters() {
@@ -116,6 +140,16 @@ export default {
     }
   }
 }
+
+/* .cards-enter,
+.cards-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
+}
+.cards-enter-active,
+.cards-leave-active {
+  transition: all 2s ease;
+} */
 
 @media only screen and (min-width: 600px) {
   .wrapper {

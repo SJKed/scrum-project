@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header />
-    <router-view />
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade" appear>
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </router-view>
     <Footer />
   </div>
 </template>
@@ -23,5 +27,15 @@ export default {
 #app {
   text-align: center;
   background: black;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 3s ease;
 }
 </style>
